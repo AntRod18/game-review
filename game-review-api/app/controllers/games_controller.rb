@@ -5,7 +5,11 @@ class GamesController < ApplicationController
   def index
     @games = Game.all
 
-    render json: @games
+    render json: @games, only: [:title, :released_date], include: {
+      reviews: {
+        only: [:website, :score]
+      }
+    }
   end
 
   # # GET /games/1

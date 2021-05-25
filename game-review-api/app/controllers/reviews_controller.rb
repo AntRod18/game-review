@@ -46,6 +46,6 @@
 
 #     # Only allow a list of trusted parameters through.
 #     def review_params
-#       params.require(:review).permit(:game_title, :score, :snippet, :game_id)
+#       params.require(:review).permit(:game_title, :website, :score, :snippet, :game_id)
 #     end
 # end

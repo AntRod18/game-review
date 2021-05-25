@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2021_05_25_174916) do
 
   create_table "reviews", force: :cascade do |t|
     t.text "game_title"
+    t.string "website"
     t.string "score"
     t.string "snippet"
     t.integer "game_id", null: false
