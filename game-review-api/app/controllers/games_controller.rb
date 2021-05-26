@@ -12,10 +12,10 @@ class GamesController < ApplicationController
     }
   end
 
-  # # GET /games/1
-  # def show
-  #   render json: @game
-  # end
+  # GET /games/1
+  def show
+    render json: @game
+  end
 
   # # POST /games
   # def create
