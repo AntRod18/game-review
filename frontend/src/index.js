@@ -1,6 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-    fetchGames();
+    GameReviewAdapter.getGames();
 })
 
 
