@@ -5,7 +5,7 @@ class GamesController < ApplicationController
   def index
     @games = Game.all
 
-    render json: @games, only: [:title, :released_date], include: {
+    render json: @games, only: [:id, :title, :released_date], include: {
       reviews: {
         only: [:website, :score]
       }
@@ -50,6 +50,6 @@ class GamesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def game_params
-      params.require(:game).permit(:title, :released_date)
+      params.require(:game).permit(:id, :title, :released_date)
     end
 end

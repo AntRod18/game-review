@@ -1,14 +1,13 @@
 class GameReviewAdapter {
 
-    constructor(baseURL) {
-        this.baseGameURL = `${baseURL}/games`
-    }
+    static baseGameURL = "http://localhost:3000/games"
 
-    getGames() {
+
+    static getGames() {
         fetch(this.baseGameURL)
         .then(r => r.json())
         .then(games => {
-            SpeechRecognitionResult.forEach(game => {
+            games.forEach(game => {
                 const g = new Game(game)
                 g.addToDom()
             })

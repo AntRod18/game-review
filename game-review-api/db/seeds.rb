@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 last_of_us = Game.create(title: "The Last of Us", released_date: "06/14/2013")
+zelda = Game.create(title: "The Legend of Zelda: Breath of the Wild", released_date: "03/03/2017")
 
 last_of_us.reviews.build(
     game_title: "The Last of Us",
@@ -24,3 +25,5 @@ last_of_us.reviews.build(
 )
 
 last_of_us.save
+zelda.save
+
