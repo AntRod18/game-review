@@ -1,8 +1,11 @@
 
-
+let currentReviews = false
+let currentForm = false
 document.addEventListener("DOMContentLoaded", () => {
 
     GameReviewAdapter.getGames();
+    Game.listenDisplay();
+    
 })
 
 

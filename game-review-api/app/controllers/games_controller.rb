@@ -7,7 +7,7 @@ class GamesController < ApplicationController
 
     render json: @games, only: [:id, :title, :released_date], include: {
       reviews: {
-        only: [:website, :score]
+        except: [:created_at, :updated_at]
       }
     }
   end

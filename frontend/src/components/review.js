@@ -15,7 +15,11 @@ class Review {
 
      render(){
         return(
-            `<li data-id=${this.id}><span>${this.score}</span> - <span>${this.website}</span></li>`
+            `<li data-id=${this.id}><span>${this.score}</span> - <span>${this.website}</span><br>
+            <span> Verdict: ${this.snippet}</span>
+            <button data-action='edit'>Edit Review</button>
+            </li>`
+            
         )
     }
 
