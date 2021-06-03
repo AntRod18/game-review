@@ -15,9 +15,9 @@ class Review {
 
      render(){
         return(
-            `<li data-id=${this.id}><span>${this.score}</span> - <span>${this.website}</span><br>
+            `<li id=${this.game_id} data-id=${this.id}><span>${this.score}</span> - <span>${this.website}</span><br>
             <span> Verdict: ${this.snippet}</span>
-            <button data-action='edit'>Edit Review</button>
+            <button data-action='delete'>Delete Review</button>
             </li>`
             
         )
@@ -47,6 +47,29 @@ class Review {
             console.log(data)
         })
         .catch(err => console.error("Im in the catch", err))
+    }
+
+    static deleteReview(li){
+        const gameId = li.id
+        const reviewId = li.dataset.id
+        
+
+        fetch(`http://localhost:3000/games/${gameId}/reviews/${reviewId}`, {
+            method: "DELETE"
+        })
+        .then(resp => {
+            console.log(resp)
+            return resp.json()
+        })
+        .then(data => {
+            if (data.message === "Successfully deleted"){
+                // delete li for DOM
+                li.remove()
+            } else {
+                alert(data.message)
+            }
+        })
+        .catch(err => console.error(err))
     }
 
     // addToDom(){

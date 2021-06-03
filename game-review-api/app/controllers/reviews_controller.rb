@@ -37,8 +37,12 @@ class ReviewsController < ApplicationController
   # DELETE /reviews/1
   def destroy
     @game = Game.find_by_id(params[:game_id])
-    @review = @game.reviews.destroy
-    
+    @review = @game.reviews
+    if @review.destroy
+      render json: {message: "Successfully deleted", review: @review}
+    else
+      render json: {message: "Failed to delete"}
+    end
   end
 
   private

@@ -40,10 +40,10 @@ class Game {
 
     static listenDisplay(){
         const gamesContainer = document.getElementById("games-container");
-        gamesContainer.addEventListener("click", this.handleDisplay)
+        gamesContainer.addEventListener("click", this.handleAction)
     }
 
-    static handleDisplay(e){
+    static handleAction(e){
        
         const li = e.target.parentElement
         const action = e.target.dataset.action
@@ -63,6 +63,9 @@ class Game {
                 
                 break;
 
+            case "delete":
+                console.log("clicked delete")
+                Review.deleteReview(li)
         }
 
             
@@ -92,12 +95,7 @@ class Game {
 
     handleSubmit(e) {
         e.preventDefault()
-        const game = this.parentElement
         const input = e.target
-        // debugger
-        // const websiteInput = e.target[0]
-        // const scoreInput = e.target[1]
-        // const snippetInput = e.target[2]
         Review.createReview(input)
     }
 
