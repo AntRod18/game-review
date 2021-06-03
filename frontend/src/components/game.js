@@ -62,6 +62,7 @@ class Game {
                 oneG.addReviewForm();
                 
                 break;
+
         }
 
             
@@ -71,21 +72,33 @@ class Game {
     addReviewForm(){
         const oneGame = document.getElementById(`game-${this.id}`)
         const form = document.createElement('form');
-        
-        
+        // form.dataset.action = "submit"
+        form.dataset.id = this.id
+        form.id = "form"
+
         
         form.innerHTML = `
-            <div class="card">
-            <div class="card-body">
             <h4>Create a Review</h4>
-            <input id="reviews-input" placeholder='review' type='text'/><br>
-            <input class="btn btn-primary btn-smail id="review-submit" value='Post review' type='submit'/>
-            </div>
-            </div>`
+            <input id="website-input" placeholder='website' type='text'/><br>
+            <input id="score-input" placeholder='score' type='text'/><br>
+            <input id="snippet-input" placeholder='verdict' type='text'/><br>
+            <input data-action="submit" id="review-submit" value='Submit' type='submit'/>`
+
         oneGame.append(form)
         currentForm = form
     
-        form.addEventListener("submit", this.handleSubmit)
+        form.addEventListener("submit", this.handleSubmit )
+    }
+
+    handleSubmit(e) {
+        e.preventDefault()
+        const game = this.parentElement
+        const input = e.target
+        // debugger
+        // const websiteInput = e.target[0]
+        // const scoreInput = e.target[1]
+        // const snippetInput = e.target[2]
+        Review.createReview(input)
     }
 
 

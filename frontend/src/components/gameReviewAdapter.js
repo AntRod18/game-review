@@ -2,7 +2,6 @@ class GameReviewAdapter {
 
     static baseGameURL = "http://localhost:3000/games"
 
-
     static getGames() {
         fetch(this.baseGameURL)
         .then(r => r.json())
@@ -14,6 +13,7 @@ class GameReviewAdapter {
         })
         .catch(error => console.error(error))
     }
+
 
 
 

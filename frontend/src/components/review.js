@@ -23,6 +23,32 @@ class Review {
         )
     }
 
+    static createReview(input){
+        const id = document.getElementById("form").dataset.id
+
+        // debugger
+        fetch( `http://localhost:3000/games/${id}/reviews`, {
+            method: "Post",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                website: input[0].value,
+                score: input[1].value,
+                snippet: input[2].value
+                    
+            })
+        })
+        
+        .then(resp => resp.json())
+        .then(data => {
+            debugger
+            console.log(data)
+        })
+        .catch(err => console.error("Im in the catch", err))
+    }
+
     // addToDom(){
     //     const reviewsContainer = document.getElementById("reviews-container");
     //     reviewsContainer.innerHTML += this.render()

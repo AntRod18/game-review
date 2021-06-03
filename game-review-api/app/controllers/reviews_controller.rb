@@ -2,11 +2,11 @@ class ReviewsController < ApplicationController
 #   before_action :set_review, only: [:show, :update, :destroy]
 
 #   # GET /reviews
-#   def index
-#     @reviews = Review.all
+  def index
+    @reviews = Review.all
 
-#     render json: @reviews
-#   end
+    render json: @reviews, except: [:created_at, :updated_at]
+  end
 
 #   # GET /reviews/1
 #   def show
@@ -15,12 +15,13 @@ class ReviewsController < ApplicationController
 
 #   # POST /reviews
   def create
-    @review = Review.new(review_params)
-
+    @game = Game.find_by_id(params[:game_id])
+    @review = @game.reviews.build(review_params)
+    
     if @review.save
       render json: @review, status: :created, location: @review
     else
-      render json: @review.errors, status: :unprocessable_entity
+      render json: @review.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -33,19 +34,21 @@ class ReviewsController < ApplicationController
     end
   end
 
-#   # DELETE /reviews/1
-#   def destroy
-#     @review.destroy
-#   end
+  # DELETE /reviews/1
+  def destroy
+    @game = Game.find_by_id(params[:game_id])
+    @review = @game.reviews.destroy
+    
+  end
 
   private
 #     # Use callbacks to share common setup or constraints between actions.
-#     def set_review
-#       @review = Review.find(params[:id])
-#     end
+    def set_review
+      @review = Review.find(params[:id])
+    end
 
 #     # Only allow a list of trusted parameters through.
     def review_params
-      params.require(:review).permit(:game_title, :website, :score, :snippet, :game_id)
+      params.require(:review).permit(:website, :score, :snippet, :game_id)
     end
 end

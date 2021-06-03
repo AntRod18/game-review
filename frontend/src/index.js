@@ -1,4 +1,4 @@
-
+const baseGameURL = "http://localhost:3000/games"
 let currentReviews = false
 let currentForm = false
 document.addEventListener("DOMContentLoaded", () => {
